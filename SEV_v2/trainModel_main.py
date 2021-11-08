@@ -75,10 +75,6 @@ trainModelBySEV(modelKind=c_model,
 #                 ISsave_dir=c_ISave_dir,
 #                 TrainingEpochs = c_Epoch)
 
-end_time = datetime.datetime.now()
-T2 = datetime.datetime.strftime(end_time, '%Y-%m-%d %H:%M:%S')
-print(str(c_model) + ' 训练结束时间：' + T2 )
-print('------------------------计时结束---------------------------------')
 '''
 # Validation & Integration
 Auclist_V = getAucList(validSDL)
@@ -88,6 +84,12 @@ n = len(Auclist_V)
 for i in range(1,n+1):
     print('第' + str(i) + '次验证')
     concatValidScores(Auclist_V,validSDL, x=i)
+
+end_time = datetime.datetime.now()
+T2 = datetime.datetime.strftime(end_time, '%Y-%m-%d %H:%M:%S')
+print(str(c_model) + ' 验证结束时间：' + T2 )
+print('------------------------计时结束---------------------------------')
+
 for i in range(1,n+1):
     print('第' + str(i) + '次测试')
     integrateIndepScores(Auclist_V, Auclist_I, indepSDL, c_IteSave_dir, x=i)
